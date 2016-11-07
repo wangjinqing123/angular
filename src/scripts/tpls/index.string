@@ -1,0 +1,89 @@
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-book"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear">
+                                <span class="block m-t-xs" style="font-size:20px;">
+                                    <i class="fa fa-book"></i>
+                                    <strong class="font-bold">火柴盒管理系统</strong>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="logo-element">火柴盒管理系统</div>
+                </li>
+                <li class="line dk"></li>
+
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">主要模块</span>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-home"></i> <span class="nav-label">主要信息</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="#/home">主页</a>
+                        </li>
+                        <li><a class="J_menuItem" href="#/user">用户信息</a>
+                        </li>
+                        <li><a class="J_menuItem" href="#/saysay">说说</a>
+                        </li>
+                        <li><a class="J_menuItem" href="#/picture">图片库</a>
+                        </li>
+                        <li><a class="J_menuItem" href="#/message">消息<span class="label label-danger pull-right">推荐</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="line dk"></li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+                 <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">其他模块</span>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">话题</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="#/hot">热门话题</a>
+                        </li>
+                        <li><a class="J_menuItem" href="#/talk">详细话题</a>
+                        </li>
+                        <li><a class="J_menuItem" href="#/fenlei">话题类型</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-share-square-o"></i> <span class="nav-label">好友</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="#/relation">好友关系</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <!--右侧部分开始-->
+    <div id="page-wrapper" style="height:auto;min-height: 100%;" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i class="fa fa-bars"></i> </a>
+                    <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入您需要查找的内容..." class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
+                </div>
+            </nav>
+        </div>
+        <ng-view></ng-view>
+        
+    </div>
+    <!--右侧部分结束-->
+</div>

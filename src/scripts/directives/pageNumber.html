@@ -1,0 +1,17 @@
+
+<div style="
+	width:100%;
+	background: #fff; 
+	overflow: hidden;">
+	<div id="{{key}}" style="
+	  display: inline-block; 
+	  transform: translate(-5px);" ng-repeat="(key,value) in list">
+		<span style="padding-left: 2px;" ng-show="{{key}}">|</span>
+		<a id="{{key}}-a" style="
+			display: inline-block; 
+			padding:8px 10px; 
+			color:#222;" ng-show="{{key}}">{{value}}</a>
+		
+	</div>
+</div>
+

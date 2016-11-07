@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="/libs/JQgrid/ui.jqgrid.css">
+
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <div class="jqGrid_wrapper">
+                        <table id="table_list"></table>
+                        <div id="pager_list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/libs/JQgrid/jquery.jqGrid.min.js"></script>
+<script src="/libs/JQgrid/grid.locale-cn.js"></script>
+<script>
+$(document).ready(function() {
+
+    $.jgrid.defaults.styleUI = 'Bootstrap';
+
+    $.ajax({
+        url:'/mock/list.json',
+        type:'get',
+        success:function(res){
+            initTable(res);
+        }
+    });
+});
+
+function initTable(mydata){
+    
+    $("#table_list").jqGrid({
+        data: mydata,
+        datatype: "local",
+        mtype:'POST',
+        height: 450,
+        autowidth: true,
+        shrinkToFit: true,
+        rowNum: 20,
+        rowList: [10, 20, 30],
+        colNames: ['ID', '注册日期', '用户', '消费情况', 'VIP等级', '热度', '备注'], //列显示名称，是一个数组对象
+        colModel: [{
+            name: 'id',
+            index: 'id',
+            editable: true,
+            width: 60,
+            sorttype: "int",
+            search: true
+        }, {
+            name: 'invdate',
+            index: 'invdate',
+            editable: true,
+            width: 90,
+            sorttype: "date",
+            formatter: "date"
+        }, {
+            name: 'name',
+            index: 'name',
+            editable: true,
+            width: 100
+        }, {
+            name: 'amount',
+            index: 'amount',
+            editable: true,
+            width: 80,
+            align: "right",
+            sorttype: "float",
+            formatter: "number"
+        }, {
+            name: 'tax',
+            index: 'tax',
+            editable: true,
+            width: 80,
+            align: "right",
+            sorttype: "float"
+        }, {
+            name: 'total',
+            index: 'total',
+            editable: true,
+            width: 80,
+            align: "right",
+            sorttype: "float"
+        }, {
+            name: 'note',
+            index: 'note',
+            editable: true,
+            width: 100,
+            sortable: false
+        }],
+        pager: "#pager_list", //定义翻页用的导航栏
+        viewrecords: true,
+        caption: "这是一个大表哥",
+        add: true,
+        edit: true,
+        addtext: 'Add',
+        edittext: 'Edit',
+        hidegrid: false
+    });
+
+    // Add selection
+    $("#table_list").setSelection(4, true);
+
+
+    // 把id为pager_list的dom元素设置成jqGrid的控制条
+    $("#table_list").jqGrid('navGrid', '#pager_list', {
+        edit: true,
+        add: true,
+        del: true,
+        search: true
+    },{
+        //edit
+        height: 200,
+        reloadAfterSubmit: true
+    },{
+        //add
+    },{
+        //del
+    },{
+        //search
+
+    });
+
+    // wrapper容器设置成响应式的。 随窗口改变
+    $(window).bind('resize', function() {
+        var width = $('.jqGrid_wrapper').width();
+        $('#table_list').setGridWidth(width);
+    });
+}
+
+</script>
