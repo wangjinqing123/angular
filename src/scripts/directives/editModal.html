@@ -1,0 +1,28 @@
+<div class="modal" ng-class="{'show':isShow && id==idMark}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" ng-click="closeEditWindow()" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">{{editContent.close}}</span>
+        </button>
+        <h4 class="modal-title">{{editContent.title}}</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group" ng-repeat="(key,value) in editContent.content">
+            <label for="inputText">{{key}}</label>
+            <input type="text" class="form-control" ng-model="editContent.inputModel[$index]" id="inputText" placeholder="{{value}}">
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditWindow()">{{editContent.cancel}}</button>
+        <button type="button" class="btn btn-primary" ng-click="saveEdit(id)">{{editContent.save}}</button>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

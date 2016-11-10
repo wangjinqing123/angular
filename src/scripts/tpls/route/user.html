@@ -1,7 +1,7 @@
 <div class="container" style="margin-right: 20px;">
 	<!-- <span ng-repeat=""></span> -->
 	<div class="table-responsive">
-		<table class="table table-striped table-bordered">
+		<table class="table table-hover table-striped table-bordered">
 		  <caption>{{title}}</caption>
 		  <thead>
 		    <tr>
@@ -15,7 +15,10 @@
 		  </tbody>
 		</table>
 		<page-number isAdd="true" isEdit="true" isSearch="true" isDelete="true">
-			
 		</page-number>
+		<!-- 编辑 -->
+		<edit-modal id="edit"></edit-modal>
+		<!-- 添加 -->
+		<edit-modal id="add"></edit-modal>
 	</div>
 </div>

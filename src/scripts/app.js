@@ -16,42 +16,18 @@ var pictureController = require('./controllers/pictureController.js');
 var messageController = require('./controllers/messageController.js');
 var hotController = require('./controllers/hotController.js');
 var talkController = require('./controllers/talkController.js');
-var fenleiController = require('./controllers/fenleiController.js');
+var talkKindController = require('./controllers/talkKindController.js');
 var relationShipController = require('./controllers/relationShipController.js');
 
+//服务
+var modalService = require('./services/modalService.js');
+app.factory('modalService',modalService);
+
 //组件
-//翻页器
-app.directive('pageNumber', function(){
-  return {
-    restrict: 'EA',
-    templateUrl: '/src/scripts/directives/pageNumber.html',
-    scope: true,
-    replace:true,
-    link: function(scope, elem, attrs) {
-    	
-      if(attrs.isadd == "true") {
-      	console.log("asdfa");
-        scope.isAdd = true;
-      }
-      if(attrs.isdelete=="true"){
-      	scope.isDelete = true;
-      }
-      if(attrs.isedit == "true") {
-        scope.isEdit = true;
-      }
-      if(attrs.issearch=='true'){
-      	scope.isSearch = true;
-      }
-    },
-    controller: function($scope) {
-    	$scope.list = {'isAdd':'添加','isEdit':'编辑','isDelete':'删除','isSearch':'搜索'};
-      $scope.isAdd = false;
-      $scope.isDelete = false;
-      $scope.isEdit = false;
-      $scope.isSearch = false;
-    }
-  }
-})
+var pageNumber = require('./directives/pageNumber.js');
+var editModal = require('./directives/editModal.js');
+app.directive('pageNumber', pageNumber);
+app.directive('editModal',editModal);
 
 
 //路由配置
@@ -85,9 +61,9 @@ app.config(['$routeProvider',function($routeProvider){
 		templateUrl:'/src/scripts/tpls/route/talk.html',
 		controller:talkController
 	})
-	.when('/fenlei',{//分类
+	.when('/fenlei',{//话题类型
 		templateUrl:'/src/scripts/tpls/route/fenlei.html',
-		controller:fenleiController
+		controller:talkKindController
 	})
 	.when('/relation',{ //关系
 		templateUrl:'/src/scripts/tpls/route/relation.html',
@@ -95,86 +71,3 @@ app.config(['$routeProvider',function($routeProvider){
 	})
 	.otherwise('/home');
 }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.config(['$routeProvider', function($routeProvider) {
-//   $routeProvider
-//     .when('/home', {
-//       templateUrl: '/src/scripts/tpls/route/home.html',
-//       controller: 'homeController'
-//     })
-//     .when('/course', {
-//       templateUrl: '/src/scripts/tpls/route/courses.html',
-//       controller: 'courseController'
-//     })
-//     .when('/employee', {
-//       templateUrl: '/src/scripts/tpls/route/employees.html',
-//       controller: 'employeeController'
-//     })
-//     .when('/employee/:abc', {
-//       templateUrl: '/src/scripts/tpls/route/employeedetail.html',
-//       controller: 'employeeDetailController'
-//     })
-//     .otherwise({
-//       redirectTo: '/home'
-//     })
-// }]);
-
-// app.controller('homeController', ['$scope', function($scope){
-//   $scope.message = 'home page';
-// }]);
-
-// app.controller('courseController', ['$scope', function($scope){
-//   $scope.courses = ['html5', 'java', 'android', 'iOS'];
-// }]);
-
-// app.controller('employeeController', ['$scope', '$http', function($scope, $http){
-//   $http({
-//     url: '/mock/employee.json'
-//   })
-//   .then(function(res){
-//     $scope.employees = res.data.data;
-//   }, function(){
-
-//   })
-// }]);
-
-// app.controller('employeeDetailController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http){
-//   $http({
-//     url: '/mock/employeedetail.json',
-//     params: {
-//       id: $routeParams.abc
-//     },
-//     method: 'get'
-//   })
-//   .then(function(res){
-//     $scope.employee = res.data.data[0];
-//   })
-// }]);
